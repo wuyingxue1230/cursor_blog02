@@ -3,8 +3,8 @@ import { getAllPostIds, getPostData } from '../../lib/markdown';
 import Link from 'next/link';
 
 type PostParams = {
-  params: Promise<{ id: string }>;
-  searchParams?: Promise<any>;
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateStaticParams() {
