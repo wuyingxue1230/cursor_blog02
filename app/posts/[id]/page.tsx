@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 type PostParams = {
   params: Promise<{ id: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<any>;
 }
 
 export async function generateStaticParams() {
