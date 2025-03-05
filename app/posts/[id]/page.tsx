@@ -13,8 +13,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: PostParams) {
-  const resolvedParams = await params;
-  const post = await getPostData(resolvedParams.id);
+  const post = await getPostData(params.id);
 
   return (
     <article className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-12">
