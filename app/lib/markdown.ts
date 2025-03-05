@@ -36,7 +36,7 @@ export function getSortedPostsData(): PostData[] {
     return {
       id,
       title: matterResult.data.title || 'Untitled',
-      date: matterResult.data.date || 'No date',
+      date: new Date(matterResult.data.date).toISOString() || 'No date',
       content: matterResult.content,
     };
   });
@@ -63,7 +63,7 @@ export async function getPostData(id: string): Promise<PostData> {
   return {
     id,
     title: matterResult.data.title || 'Untitled',
-    date: matterResult.data.date || 'No date',
+    date: new Date(matterResult.data.date).toISOString() || 'No date',
     content: matterResult.content,
     contentHtml,
   };
