@@ -1,21 +1,14 @@
 import { format } from 'date-fns';
 import { getAllPostIds, getPostData } from '../../lib/markdown';
 import Link from 'next/link';
-import type { PageProps } from 'next';
-
-// 修改 PostParams 类型定义，使其兼容 PageProps
-type PostParams = PageProps & {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] };
-};
 
 export async function generateStaticParams() {
   const paths = getAllPostIds();
   return paths;
 }
 
-export default async function Post({ params }: PostParams) {
-  // 不再需要 await params，因为 params 已经是对象
+export default async function Post(props: any) {
+  const { params } = props;
   const post = await getPostData(params.id);
 
   return (
