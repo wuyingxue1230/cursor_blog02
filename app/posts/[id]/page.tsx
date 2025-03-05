@@ -1,11 +1,13 @@
 import { format } from 'date-fns';
 import { getAllPostIds, getPostData } from '../../lib/markdown';
 import Link from 'next/link';
+import type { PageProps } from 'next';
 
+// 修改 PostParams 类型定义
 type PostParams = {
-  params: Promise<{ id: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] };
+};
 
 export async function generateStaticParams() {
   const paths = getAllPostIds();
@@ -13,8 +15,8 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: PostParams) {
-  const resolvedParams = await params;
-  const post = await getPostData(resolvedParams.id);
+  // 不需要再处理 Promise 了，因为 params 已经是对象
+  const post = await getPostData(params.id);
 
   return (
     <article className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-12">
@@ -57,4 +59,4 @@ export default async function Post({ params }: PostParams) {
       </div>
     </article>
   );
-} 
+}
