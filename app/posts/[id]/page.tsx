@@ -2,10 +2,11 @@ import { format } from 'date-fns';
 import { getAllPostIds, getPostData } from '../../lib/markdown';
 import Link from 'next/link';
 
-interface PostParams {
+type PostParams = {
   params: {
     id: string;
   };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateStaticParams() {
@@ -13,7 +14,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Post({ params }: PostParams) {
+export default async function Post({ params, searchParams }: PostParams) {
   const post = await getPostData(params.id);
 
   return (
