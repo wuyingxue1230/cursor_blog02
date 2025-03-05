@@ -45,7 +45,7 @@ export default async function Post({ params }: PostParams) {
                 {post.title}
               </h1>
               <time className="text-gray-600">
-                {format(new Date(post.date), 'yyyy年MM月dd日')}
+                {format(new Date(post.date), 'yyyy-MM-dd')}
               </time>
             </div>
             <div
