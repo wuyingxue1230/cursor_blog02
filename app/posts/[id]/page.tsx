@@ -3,9 +3,7 @@ import { getAllPostIds, getPostData } from '../../lib/markdown';
 import Link from 'next/link';
 
 type PostParams = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
@@ -15,7 +13,8 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: PostParams) {
-  const post = await getPostData(params.id);
+  const resolvedParams = await params;
+  const post = await getPostData(resolvedParams.id);
 
   return (
     <article className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 py-12">
