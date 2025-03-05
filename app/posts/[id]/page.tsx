@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Post({ params, searchParams }: PostParams) {
+export default async function Post({ params }: PostParams) {
   const post = await getPostData(params.id);
 
   return (
